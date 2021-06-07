@@ -1,1 +1,1 @@
-# jQueryProject Code Player
+# jQuery Project Code Player
