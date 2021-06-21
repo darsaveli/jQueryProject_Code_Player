@@ -1,5 +1,7 @@
 
 
+
+
 <html>
 
     <head>
@@ -57,6 +59,18 @@
         .hilightedButton {
              background-color: grey;
         }
+        textarea {
+            resize:none;
+            border-top: none;
+            border-color: grey;
+        }
+        .panel {
+            float: left;
+            width: 50%;
+        }
+        iframe {
+            border: none;
+        }
         
         </style>
         
@@ -77,6 +91,14 @@
             </div>
 
         </div>
+        <div id="bodyContainer">
+            <textarea id="htmlPanel" class="panel">Hi</textarea>
+            <iframe id="outputPanel" class="panel"></iframe>
+
+
+
+
+        </div>
 
         
             <script type="text/javascript">
@@ -89,12 +111,20 @@
                     $(this).toggleClass("active");
                     $(this).removeClass("hilightedButton");
                 });
-                    
-        
+                $(".panel").height($(window).height() - $("#header").height() - 15 );
+                $(".panel").width(($(window).width() / 2) - 10);
+
+                //change html of an iframe with jquery
+                $("iframe").contents().find("html").html($("#htmlPanel").val());
+                //jquery event when textarea is updated; updates every time when user makes action like:change, keyup, paste
+                $("textarea").on('change keyup paste', function() {
+                    //when thi happens iframe contend needs update, thus copy the higher string;
+                    $("iframe").contents().find("html").html($("#htmlPanel").val());
+
+                });
 
 
 
-                
             </script>
         
     </body>
