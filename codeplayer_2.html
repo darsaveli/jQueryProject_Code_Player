@@ -1,7 +1,5 @@
 
 
-
-
 <html>
 
     <head>
@@ -71,7 +69,9 @@
         iframe {
             border: none;
         }
-        
+        .hidden {
+            display: none;
+        }
         </style>
         
     </head>
@@ -92,7 +92,9 @@
 
         </div>
         <div id="bodyContainer">
-            <textarea id="htmlPanel" class="panel">Hi</textarea>
+            <textarea id="htmlPanel" class="panel"><p>Hello</p></textarea>
+            <textarea id="cssPanel" class="panel hidden">p { color: green; }</textarea>
+            <textarea id="javascriptPanel" class="panel hidden">alert("hi there!")</textarea>
             <iframe id="outputPanel" class="panel"></iframe>
 
 
@@ -110,7 +112,11 @@
                 $(".toggleButton").click(function () {
                     $(this).toggleClass("active");
                     $(this).removeClass("hilightedButton");
+                    //get the id of the button that was clicked
+                var panelId = $(this).attr("id") + "Panel";
+                $("#" + panelId).toggle();
                 });
+                
                 $(".panel").height($(window).height() - $("#header").height() - 15 );
                 $(".panel").width(($(window).width() / 2) - 10);
 
